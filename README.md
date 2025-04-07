@@ -55,7 +55,7 @@ def below_zero(operations: List[int]) -> bool:
 
 ### Results
 Small data set (32 problems):
-Temperature | gpt-4o | gpt-4o-mini | claude |
+Temperature | gpt-4o | gpt-4o-mini | claude (sonnet 3.5)|
 ---- | ------------- | ------------ | --- |
 0.25 | 31 / 32, 96%  | 30 / 32, 93% | --- |
 0.5  | 30 / 32, 93%  | 30 / 32, 93% | --- |
@@ -63,7 +63,7 @@ Temperature | gpt-4o | gpt-4o-mini | claude |
 1.0  | 32 / 32, 100% | 28 / 32, 88% | --- |
 
 Large data set (64 problems):
-Temperature | gpt-4o | gpt-4o-mini   | claude        |
+Temperature | gpt-4o | gpt-4o-mini   | claude (sonnet 3.5)|
 ---- | ------------- | ------------- | ------------- |
 0.25 |  61 / 64, 95% | 61 / 64, 95%  | 64 / 64, 100% |
 0.5  |  61 / 64, 95% | 64 / 64, 100% | 64 / 64, 100% |
