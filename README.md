@@ -56,22 +56,24 @@ def below_zero(operations: List[int]) -> bool:
 ### Results
 Small data set (32 problems):
 Temperature | gpt-4o | gpt-4o-mini | claude |
----- | ------------- | ----------- | --- |
-0.25 | 31 / 32, 96%  | ----------- | --- |
-0.5  | 30 / 32, 93%  | ----------- | --- |
-0.75 | 31 / 32, 96%  | ----------- | --- |
-1.0  | 32 / 32, 100% | ----------- | --- |
+---- | ------------- | ------------ | --- |
+0.25 | 31 / 32, 96%  | 30 / 32, 93% | --- |
+0.5  | 30 / 32, 93%  | 30 / 32, 93% | --- |
+0.75 | 31 / 32, 96%  | 29 / 32, 91% | --- |
+1.0  | 32 / 32, 100% | 28 / 32, 88% | --- |
 
 Large data set (64 problems):
-Temperature | gpt-4o | gpt-4o-mini | claude |
----- | ------------- | ------------ | --- |
-0.25 | ------------  | 61 / 64, 95% | --- |
-0.5  | ------------  | ------------ | --- |
-0.75 | ------------  | ------------ | --- |
-1.0  | ------------- | ------------ | --- |
+Temperature | gpt-4o | gpt-4o-mini   | claude        |
+---- | ------------- | ------------- | ------------- |
+0.25 |  61 / 64, 95% | 61 / 64, 95%  | 64 / 64, 100% |
+0.5  |  61 / 64, 95% | 64 / 64, 100% | 64 / 64, 100% |
+0.75 |  60 / 64, 93% | 60 / 64, 93%  | 64 / 64, 100% |
+1.0  |  63 / 64, 98% | 63 / 64, 98%  | 63 / 64, 98%  |
+
+##### Conclusions
+LLMs are capable of solving easy problems, demonstrating >90% accuracy
 
 ### Future directions
-
 1. Improve the initial prompt and tune it for each model separately.
 2. Provide feedback on unsuccessful attempts to improve the result incrementally. That would make the process of solving to be much closer to real-life settings.
 3. Prepare problem descriptions, making them more "suitable" for models to digest. 
