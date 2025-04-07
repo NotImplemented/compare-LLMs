@@ -21,27 +21,59 @@ Test set consisted of 32 problems from aforementioned dataset. Sample problem de
 ```
 from typing import List
 
-def has_close_elements(numbers: List[float], threshold: float) -> bool:
-    """ Check if in given list of numbers, are any two numbers closer to each other than
-    given threshold.
-    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)
+def below_zero(operations: List[int]) -> bool:
+    """ You're given a list of deposit and withdrawal operations on a bank account that starts with
+    zero balance. Your task is to detect if at any point the balance of account falls below zero, and
+    at that point function should return True. Otherwise it should return False.
+    >>> below_zero([1, 2, 3])
     False
-    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)
+    >>> below_zero([1, 2, -4, 5])
     True
     """
 ```
 
-### Results
+Output produced by gpt-4o-mini (temperature = 0.25):
+```
+from typing import List
 
-Temperature | gpt-4o | gpt-4o-mini | claude |
----- | ------------- | ----------- | --- |
-0.25 | 31 / 32, 96%  | ----------- | --- |
-0.5  | 30 / 32, 93%  | ----------- | --- |
-0.75 | 31 / 32, 96%  | ----------- | --- |
-1.0  | 32 / 32, 100% | ----------- | --- |
+def below_zero(operations: List[int]) -> bool:
+    """ You're given a list of deposit and withdrawal operations on a bank account that starts with
+    zero balance. Your task is to detect if at any point the balance of account falls below zero, and
+    at that point function should return True. Otherwise it should return False.
+    >>> below_zero([1, 2, 3])
+    False
+    >>> below_zero([1, 2, -4, 5])
+    True
+    """
+    balance = 0
+    for operation in operations:
+        balance += operation
+        if balance < 0:
+            return True
+    return False
+```
+
+### Results
+Small data set (32 problems):
+Temperature | gpt-4o | gpt-4o-mini | claude (sonnet 3.5)|
+---- | ------------- | ------------ | --- |
+0.25 | 31 / 32, 96%  | 30 / 32, 93% | --- |
+0.5  | 30 / 32, 93%  | 30 / 32, 93% | --- |
+0.75 | 31 / 32, 96%  | 29 / 32, 91% | --- |
+1.0  | 32 / 32, 100% | 28 / 32, 88% | --- |
+
+Large data set (64 problems):
+Temperature | gpt-4o | gpt-4o-mini   | claude (sonnet 3.5)|
+---- | ------------- | ------------- | ------------- |
+0.25 |  61 / 64, 95% | 61 / 64, 95%  | 64 / 64, 100% |
+0.5  |  61 / 64, 95% | 64 / 64, 100% | 64 / 64, 100% |
+0.75 |  60 / 64, 93% | 60 / 64, 93%  | 64 / 64, 100% |
+1.0  |  63 / 64, 98% | 63 / 64, 98%  | 63 / 64, 98%  |
+
+##### Conclusions
+LLMs are capable of solving easy problems, demonstrating >90% accuracy
 
 ### Future directions
-
 1. Improve the initial prompt and tune it for each model separately.
 2. Provide feedback on unsuccessful attempts to improve the result incrementally. That would make the process of solving to be much closer to real-life settings.
 3. Prepare problem descriptions, making them more "suitable" for models to digest. 
