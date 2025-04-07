@@ -41,7 +41,7 @@ improvements or changes.
 '''
 
 
-def generate_one_completion(problem_description, model_name):
+def generate_one_completion_openai(problem_description, model_name):
     prompt = generate_prompt(problem_description)
 
     solution = completions_with_backoff(
@@ -57,13 +57,13 @@ def generate_one_completion(problem_description, model_name):
 
 
 def generate_one_completion_air(problem_description, model_name, temperature):
-
-    print(problem_description)
     prompt = generate_prompt(problem_description)
-
     url = 'https://api.air.fail/public/text/' + model_name
 
-    message = {"content": prompt, "info": {"version": "gpt4-o-mini", "temperature": temperature}}
+    message = {
+        "content": prompt, 
+        "info": {"versions": "gpt-4o", "temperature": temperature}
+    }
     headers = {
         'Authorization': os.environ['AIR_KEY'], 
         'Content-Type': 'application/json'
@@ -76,8 +76,8 @@ def generate_one_completion_air(problem_description, model_name, temperature):
     return solution
 
 
-if __name__ == '__main__':  
-    for model_name in ['chatgpt']:
+if __name__ == '__main__':
+    for model_name in air_models:
         for temperature in [0.25, 0.5, 0.75, 1.0]:
             problems = read_problems()
             file_name = model_name + "_temp" + str(temperature) + "_samples.jsonl"
